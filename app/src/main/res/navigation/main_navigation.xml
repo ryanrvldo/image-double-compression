@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/compressionFragment"
+        android:name="dev.ryanrvldo.imagedoublecompression.compression.CompressionFragment"
+        android:label="@string/compression"
+        tools:layout="@layout/compression_fragment" />
+    <fragment
+        android:id="@+id/decompressionFragment"
+        android:name="dev.ryanrvldo.imagedoublecompression.decompression.DecompressionFragment"
+        android:label="@string/decompression"
+        tools:layout="@layout/decompression_fragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="dev.ryanrvldo.imagedoublecompression.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_compression"
+            app:destination="@id/compressionFragment" />
+        <action
+            android:id="@+id/action_home_to_decompression"
+            app:destination="@id/decompressionFragment" />
+    </fragment>
+
+</navigation>

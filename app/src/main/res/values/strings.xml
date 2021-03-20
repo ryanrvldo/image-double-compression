@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">ImageDoubleCompression</string>
+    <string name="app_name">Image Double Compression</string>
+    <string name="compression">Compression</string>
+    <string name="decompression">Decompression</string>
+    <string name="file_desc">File :</string>
+    <string name="size_desc">Size :</string>
+    <string name="compress">Compress</string>
+    <string name="decompress">Decompress</string>
+    <string name="home">Home</string>
+    <string name="save">Save</string>
 </resources>
