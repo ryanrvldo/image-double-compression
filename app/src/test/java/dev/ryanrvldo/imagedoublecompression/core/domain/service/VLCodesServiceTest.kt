@@ -8,6 +8,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.Test
 
+@ExperimentalUnsignedTypes
 @ExperimentalCoroutinesApi
 class VLCodesServiceTest {
 
@@ -98,6 +99,71 @@ class VLCodesServiceTest {
             assertThat(pairResult.second).isNotEmpty()
             assertThat(pairResult.second).hasLength(expectedDictionaryBytes.size)
             assertThat(pairResult.second).isEqualTo(expectedDictionaryBytes)
+        }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `test decompress empty dictionary bytes with goldbach algorithm throw exception`() =
+        runBlocking {
+            vlCodesService = Injection.provideGoldbachService(testScope)
+            val result = vlCodesService.decompress(byteArrayOf(2, 3, 4, 5), byteArrayOf())
+            assertThat(result).isEmpty()
+        }
+
+    @Test
+    fun `test decompress empty bytes with goldbach algorithm return empty array`() = runBlocking {
+        vlCodesService = Injection.provideGoldbachService(testScope)
+        val result = vlCodesService.decompress(byteArrayOf(), byteArrayOf(2, 3, 4, 5))
+        assertThat(result).isNotNull()
+        assertThat(result).isEmpty()
+    }
+
+    @Test
+    fun `test decompress dummy bytes with goldbach algorithm return decompressed bytes`() =
+        runBlocking {
+            vlCodesService = Injection.provideGoldbachService(testScope)
+            val dummyBytes = dummyString.toByteArray().toTypedArray()
+            val compressedResult = vlCodesService.compress(dummyBytes)
+            assertThat(compressedResult).isNotNull()
+
+            val bytesResult =
+                vlCodesService.decompress(compressedResult.first, compressedResult.second)
+            val decompressedResult = String(bytesResult)
+            assertThat(decompressedResult).isNotNull()
+            assertThat(decompressedResult).isNotEmpty()
+            assertThat(decompressedResult).isEqualTo(dummyString)
+        }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `test decompress empty dictionary bytes with boldi vigna algorithm throw exception`() =
+        runBlocking {
+            vlCodesService = Injection.provideBoldiVignaService(testScope)
+            val result = vlCodesService.decompress(byteArrayOf(2, 3, 4, 5), byteArrayOf())
+            assertThat(result).isEmpty()
+        }
+
+    @Test
+    fun `test decompress empty bytes with boldi vigna algorithm return empty array`() =
+        runBlocking {
+            vlCodesService = Injection.provideBoldiVignaService(testScope)
+            val result = vlCodesService.decompress(byteArrayOf(), byteArrayOf(2, 3, 4, 5))
+            assertThat(result).isNotNull()
+            assertThat(result).isEmpty()
+        }
+
+    @Test
+    fun `test decompress dummy bytes with boldi vigna algorithm return decompressed bytes`() =
+        runBlocking {
+            vlCodesService = Injection.provideBoldiVignaService(testScope)
+            val dummyBytes = dummyString.toByteArray().toTypedArray()
+            val compressedResult = vlCodesService.compress(dummyBytes)
+            assertThat(compressedResult).isNotNull()
+
+            val bytesResult =
+                vlCodesService.decompress(compressedResult.first, compressedResult.second)
+            val decompressedResult = String(bytesResult)
+            assertThat(decompressedResult).isNotNull()
+            assertThat(decompressedResult).isNotEmpty()
+            assertThat(decompressedResult).isEqualTo(dummyString)
         }
 
 }
