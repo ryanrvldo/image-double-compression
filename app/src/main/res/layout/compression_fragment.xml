@@ -4,47 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/double_default_dimen"
     tools:context=".compression.CompressionFragment"
     tools:ignore="ContentDescription">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/img_card"
+    <RelativeLayout
+        android:id="@+id/img_container"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:layout_marginHorizontal="32dp"
         android:layout_marginVertical="32dp"
+        android:background="@drawable/image_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/design_default_color_primary_dark"
-        app:strokeWidth="2dp">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_clear_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            app:backgroundTint="@color/design_default_color_error"
+            app:borderWidth="2dp"
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:rippleColor="@color/design_default_color_primary_variant"
+            app:srcCompat="@drawable/ic_close_light"
+            app:tint="@color/white" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_clear_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:visibility="gone"
-                app:backgroundTint="@color/design_default_color_error"
-                app:borderWidth="2dp"
-                app:elevation="0dp"
-                app:fabSize="mini"
-                app:rippleColor="@color/design_default_color_primary_variant"
-                app:srcCompat="@drawable/ic_close_light"
-                app:tint="@color/white" />
-
-        </RelativeLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_select_image"
@@ -53,8 +47,8 @@
         android:layout_marginEnd="@dimen/half_default_dimen"
         android:layout_marginBottom="@dimen/half_default_dimen"
         app:backgroundTint="@color/design_default_color_primary"
-        app:layout_constraintBottom_toBottomOf="@+id/img_card"
-        app:layout_constraintEnd_toEndOf="@+id/img_card"
+        app:layout_constraintBottom_toBottomOf="@+id/img_container"
+        app:layout_constraintEnd_toEndOf="@+id/img_container"
         app:layout_goneMarginTop="@dimen/default_dimen"
         app:srcCompat="@drawable/ic_add_image_light"
         app:tint="@color/white" />
@@ -65,8 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/file_desc"
-        app:layout_constraintStart_toStartOf="@+id/img_card"
-        app:layout_constraintTop_toBottomOf="@+id/img_card" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_container" />
 
     <TextView
         android:id="@+id/tv_img_size"
@@ -74,9 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/size_desc"
-        app:layout_constraintStart_toStartOf="@+id/img_card"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_img_file" />
-
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_compress"
@@ -88,9 +81,18 @@
         android:textAllCaps="false"
         android:textColor="@color/design_default_color_surface"
         app:backgroundTint="@color/design_default_color_primary"
-        app:iconGravity="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_img_size" />
+
+    <TextView
+        android:id="@+id/tv_result_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/double_default_dimen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_compress"
+        tools:text="Result of Compression" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

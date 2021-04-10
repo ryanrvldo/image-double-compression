@@ -1,12 +1,17 @@
-package dev.ryanrvldo.imagedoublecompression.core.util
+package dev.ryanrvldo.imagedoublecompression.core.service
 
+import dev.ryanrvldo.imagedoublecompression.core.domain.service.VLCodesService
+import dev.ryanrvldo.imagedoublecompression.core.util.BinaryConverter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 import kotlin.math.ceil
 import kotlin.math.log2
 import kotlin.math.pow
 
-class BoldiVignaCodes(private val coroutineScope: CoroutineScope) : VLCodes() {
+class BoldiVignaCodesService(
+    private val coroutineScope: CoroutineScope,
+    binaryConverter: BinaryConverter,
+) : VLCodesService(binaryConverter) {
 
     companion object {
         const val zeta = 3

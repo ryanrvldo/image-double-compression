@@ -1,5 +1,7 @@
-package dev.ryanrvldo.imagedoublecompression.core.util
+package dev.ryanrvldo.imagedoublecompression.core.service
 
+import dev.ryanrvldo.imagedoublecompression.core.domain.service.VLCodesService
+import dev.ryanrvldo.imagedoublecompression.core.util.BinaryConverter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -7,7 +9,10 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class GoldbachCodes(private val coroutineScope: CoroutineScope) : VLCodes() {
+class GoldbachCodesService(
+    private val coroutineScope: CoroutineScope,
+    binaryConverter: BinaryConverter,
+) : VLCodesService(binaryConverter) {
 
     private lateinit var primeNumbers: List<Int>
 

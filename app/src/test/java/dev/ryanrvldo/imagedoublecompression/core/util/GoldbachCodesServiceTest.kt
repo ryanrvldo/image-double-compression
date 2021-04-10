@@ -2,6 +2,7 @@ package dev.ryanrvldo.imagedoublecompression.core.util
 
 import com.google.common.truth.Truth.assertThat
 import dev.ryanrvldo.imagedoublecompression.assertString
+import dev.ryanrvldo.imagedoublecompression.core.di.Injection
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -11,11 +12,11 @@ import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class GoldbachCodesTest {
+class GoldbachCodesServiceTest {
 
     private val testScope = TestCoroutineScope()
 
-    private val goldbachCodes = GoldbachCodes(testScope)
+    private val goldbachCodes = Injection.provideGoldbachService(testScope)
 
     private val expectedCodes = listOf(
         "11", "101", "011", "1001", "0101", "0011", "00101", "010001", "00011", "0010001", "000101",
@@ -157,4 +158,8 @@ class GoldbachCodesTest {
         assertThat(result).isEqualTo(expected)
     }
 
+    @Test
+    fun `test compress text and return compressed result`() {
+
+    }
 }

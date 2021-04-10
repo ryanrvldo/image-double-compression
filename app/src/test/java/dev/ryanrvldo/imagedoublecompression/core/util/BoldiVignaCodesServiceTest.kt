@@ -2,6 +2,7 @@ package dev.ryanrvldo.imagedoublecompression.core.util
 
 import com.google.common.truth.Truth.assertThat
 import dev.ryanrvldo.imagedoublecompression.assertString
+import dev.ryanrvldo.imagedoublecompression.core.di.Injection
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -11,11 +12,11 @@ import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class BoldiVignaCodesTest {
+class BoldiVignaCodesServiceTest {
 
     private val testScope = TestCoroutineScope()
 
-    private val boldiVignaCodes = BoldiVignaCodes(testScope)
+    private val boldiVignaCodes = Injection.provideBoldiVignaService(testScope)
 
     private val expectedCodes = listOf(
         "100", "1010", "1011", "1100", "1101", "1110", "1111", "0100000", "0100001", "0100010",

@@ -2,7 +2,6 @@ package dev.ryanrvldo.imagedoublecompression
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dev.ryanrvldo.imagedoublecompression.databinding.ActivityMainBinding
@@ -23,8 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.toolbarMain.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id != R.id.homeFragment) {
-                binding.toolbarMain.navigationIcon =
-                    ContextCompat.getDrawable(this, R.drawable.ic_back_light)
+                binding.toolbarMain.setNavigationIcon(R.drawable.ic_back_light)
             }
         }
     }
