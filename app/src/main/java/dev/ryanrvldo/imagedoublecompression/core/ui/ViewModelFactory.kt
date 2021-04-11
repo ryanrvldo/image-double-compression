@@ -6,6 +6,7 @@ import dev.ryanrvldo.imagedoublecompression.compression.CompressionViewModel
 import dev.ryanrvldo.imagedoublecompression.core.di.Injection
 import dev.ryanrvldo.imagedoublecompression.core.service.BoldiVignaCodesService
 import dev.ryanrvldo.imagedoublecompression.core.service.GoldbachCodesService
+import dev.ryanrvldo.imagedoublecompression.decompression.DecompressionViewModel
 import kotlinx.coroutines.CoroutineScope
 
 class ViewModelFactory private constructor(
@@ -16,8 +17,9 @@ class ViewModelFactory private constructor(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when {
         modelClass.isAssignableFrom(CompressionViewModel::class.java) -> CompressionViewModel(
-            boldiVignaService,
-            goldbachService) as T
+            boldiVignaService, goldbachService) as T
+        modelClass.isAssignableFrom(DecompressionViewModel::class.java) -> DecompressionViewModel(
+            boldiVignaService, goldbachService) as T
         else -> throw Throwable("Unknown view model class: ${modelClass.name}")
     }
 

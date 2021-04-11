@@ -11,4 +11,6 @@
     <string name="not_available">N/A</string>
     <string name="please_init_image">Please initialize your image first.</string>
     <string name="please_wait_a_moments">Please wait a moments…</string>
+    <string name="dictionary_file_not_found">Dictionary file is not found.</string>
+    <string name="reset">Reset</string>
 </resources>

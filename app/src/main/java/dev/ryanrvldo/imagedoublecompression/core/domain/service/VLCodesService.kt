@@ -64,7 +64,7 @@ abstract class VLCodesService(private val binaryConverter: BinaryConverter) {
         for (bit in compressedBin) {
             stringBit += bit
             if (codesMap.containsKey(stringBit)) {
-                val idxDict = codesMap[stringBit] ?: error("")
+                val idxDict = codesMap[stringBit]!!
                 resultList.add(dictBytes[idxDict])
                 stringBit = String()
             }
